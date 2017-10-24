@@ -1,9 +1,10 @@
 package explore_region_game;
 import java.io.File;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
-import joptsimple.OptionParser;
-import joptsimple.OptionSet;
+//import joptsimple.OptionParser;
+//import joptsimple.OptionSet;
 
 public class  Main {
 	File f;
@@ -38,9 +39,35 @@ public static void main(String[] args) {
 public  void createRegionMap() {
 	this.data.get("C");
 		System.out.println(this.data.get("C").get("x"));
-//		 for (int i=0 ; i<Integer.parseInt(this.data["c"]["x"])  ; i++) {
-//		HashMap<Integer,HashMap<Integer,String>>rMapData=new HashMap<Integer,HashMap<Integer,String>>();
-//	}
+		HashMap<Integer,HashMap<Integer,HashMap<String, String>>>rMapData=new HashMap<Integer,HashMap<Integer,HashMap<String, String>>>();
+
+		 for (int i=0 ; i<Integer.parseInt(this.data.get("C").get("x"))  ; i++) {
+			 HashMap<Integer,HashMap<String, String>>yvalue=new HashMap<Integer,HashMap<String, String>>();
+			 for(int j=0 ; j<Integer.parseInt(this.data.get("C").get("y"))  ; j++) {
+				 HashMap<String, String>squareContent = new HashMap<String,String>();
+				 yvalue.put(j,squareContent);
+			
+			 }
+			 rMapData.put(i, yvalue);
+		 }
+		 for (String c:this.data.keySet()) {
+//			 Pattern elementPattern= Pattern.compile("^A*");
+			 System.out.println(c);
+			 if(c.matches("A.*")) {
+				 String x= this.data.get(c).get("x");
+				 String y= this.data.get(c).get("y");		 
+				 rMapData.get(x).get(y).put("A",this.data.get(c).get("name"));
+				System.out.println(this.data.get(c).get("x"));
+//				.put(this.data.get(c).get("name")
+			}else if(c.matches("^M.*")) {
+				System.out.println("mmmmmmm");
+			}else if(c.matches("^T.*")) {
+				System.out.println("tttttt");
+			}
+			 
+		 }
+		 
+	System.out.println(rMapData);	 
 }
 
 }

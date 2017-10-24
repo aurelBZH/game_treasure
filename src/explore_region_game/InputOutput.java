@@ -45,7 +45,6 @@ public class InputOutput{
 					element.put(depart+cptT, hm);
 					cptT++;
 				}else if (elementListLine[0].equals("A")) {
-					int cpt=0;
 					HashMap<String, String> hm = new HashMap<String, String>();
 					hm.put("name",elementListLine[1]);
 					hm.put("x", elementListLine[2]);
