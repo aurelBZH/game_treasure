@@ -7,7 +7,7 @@ import joptsimple.OptionSet;
 
 public class  Main {
 	File f;
-	HashMap<String, String> data;
+	HashMap<String, HashMap<String, String>> data;
 	RegionMap rMap;
 	public Main(String arg){
 		
@@ -23,7 +23,7 @@ public class  Main {
 	
 public static void main(String[] args) {
 	Main main = new Main(args[0]);
-
+	main.createRegionMap();
 //	System.out.println(args[0]);
 
 //	 OptionParser parser = new OptionParser( "j::k" );
@@ -34,6 +34,13 @@ public static void main(String[] args) {
 		
 
 
+}
+public  void createRegionMap() {
+	this.data.get("C");
+		System.out.println(this.data.get("C").get("x"));
+//		 for (int i=0 ; i<Integer.parseInt(this.data["c"]["x"])  ; i++) {
+//		HashMap<Integer,HashMap<Integer,String>>rMapData=new HashMap<Integer,HashMap<Integer,String>>();
+//	}
 }
 
 }
