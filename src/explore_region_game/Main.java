@@ -56,7 +56,8 @@ public  void createRegionMap() {
 							 HashMap<String,Integer>position= new HashMap<String, Integer>();
 							 position.put("x", Integer.parseInt(this.data.get(c).get("x")));
 							 position.put("y", Integer.parseInt(this.data.get(c).get("y")));
-							 adventurer adventurerVal=new adventurer(this.data.get(c).get("name"),position, this.data.get(c).get("orientation"),this.data.get(c).get().split("(?!^)"));
+							 adventurer adventurerVal=new adventurer(this.data.get(c).get("name"),position, this.data.get(c).get("orientation"),this.data.get(c).get("movment").split("(?!^)"));
+							 adventurerList.add(adventurerVal);
 						 }else if(c.matches("^M.*")) {
 							 squareContent.put("M","" );
 						 }else if(c.matches("^T.*")) {
@@ -71,7 +72,7 @@ public  void createRegionMap() {
 			 rMapData.put(i, yvalue);
 		 }
 //		
-	this.rMap = new RegionMap(rMapData,);	 
+	this.rMap = new RegionMap(rMapData,adventurerList);	 
 	System.out.println(rMapData);	 
 }
 

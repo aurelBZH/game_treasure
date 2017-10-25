@@ -7,13 +7,13 @@ import java.util.List;
 public class adventurer {
 	private HashMap<String,Integer> position;
 	private String Orientation;
-	private ArrayList <String>movment;
+	private String[] movment;
 	public String id; 
 	
-public adventurer(String id,HashMap<String,Integer>position,String Orientation,  ArrayList <String>movment) {
+public adventurer(String id,HashMap<String,Integer>position,String Orientation,  String[] movement) {
 		this.position=position;
 		this.Orientation=Orientation;
-		this.movment=movment;
+		this.movment=movement;
 		this.id=id;
 	}
 
@@ -33,11 +33,11 @@ public void setOrientation(String orientation) {
 	Orientation = orientation;
 }
 
-public ArrayList<String> getMovment() {
+public String[] getMovment() {
 	return movment;
 }
 
-public void setMovment(ArrayList<String> movment) {
+public void setMovment(String[] movment) {
 	this.movment = movment;
 }
 

@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RegionMap{
-	private HashMap<Integer, String> rMap;
+	private HashMap<Integer,HashMap<Integer,HashMap<String,String>>> rMap;
 	private ArrayList<adventurer> adventurerList;
-	public RegionMap(HashMap<Integer,String>rMap,ArrayList<adventurer> adventurerList){
-		this.rMap=rMap;
+	public RegionMap(HashMap<Integer,HashMap<Integer,HashMap<String,String>>> rMapData,ArrayList<adventurer> adventurerList){
+		this.rMap=rMapData;
 		this.adventurerList=adventurerList;	
 	}
-	public HashMap<Integer, String> getrMap() {
+
+	public HashMap<Integer,HashMap<Integer,HashMap<String,String>>> getrMap() {
 		return rMap;
 	}
-	public void setrMap(HashMap<Integer, String> rMap) {
+	public void setrMap(HashMap<Integer,HashMap<Integer,HashMap<String,String>>> rMap) {
 		this.rMap = rMap;
 	}
 	public ArrayList<adventurer> getAdventurerList() {
