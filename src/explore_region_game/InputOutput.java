@@ -52,7 +52,7 @@ public class InputOutput{
 					hm.put("orientation", elementListLine[4]);
 					hm.put("movement", elementListLine[5]);
 					element.put(depart+cptA, hm);
-					System.out.println(hm.get("name"));
+					System.out.println(hm);
 //					System.out.print(depart);
 					cptA++;
 					

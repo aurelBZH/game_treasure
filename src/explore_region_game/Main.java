@@ -1,5 +1,6 @@
 package explore_region_game;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
@@ -40,33 +41,37 @@ public  void createRegionMap() {
 	this.data.get("C");
 		System.out.println(this.data.get("C").get("x"));
 		HashMap<Integer,HashMap<Integer,HashMap<String, String>>>rMapData=new HashMap<Integer,HashMap<Integer,HashMap<String, String>>>();
-
+		ArrayList<adventurer>adventurerList = new ArrayList<adventurer>();
 		 for (int i=0 ; i<Integer.parseInt(this.data.get("C").get("x"))  ; i++) {
 			 HashMap<Integer,HashMap<String, String>>yvalue=new HashMap<Integer,HashMap<String, String>>();
 			 for(int j=0 ; j<Integer.parseInt(this.data.get("C").get("y"))  ; j++) {
 				 HashMap<String, String>squareContent = new HashMap<String,String>();
+				 for (String c:this.data.keySet()) {
+					 System.out.println(this.data.get(c).get("y"));
+					 Integer x= Integer.parseInt(this.data.get(c).get("x"));
+					 Integer y= Integer.parseInt(this.data.get(c).get("y"));
+					 if((x==i)&&(y==j)) {
+						 if(c.matches("A.*")) {
+							 squareContent.put("A", this.data.get(c).get("name"));
+							 HashMap<String,Integer>position= new HashMap<String, Integer>();
+							 position.put("x", Integer.parseInt(this.data.get(c).get("x")));
+							 position.put("y", Integer.parseInt(this.data.get(c).get("y")));
+							 adventurer adventurerVal=new adventurer(this.data.get(c).get("name"),position, this.data.get(c).get("orientation"),this.data.get(c).get().split("(?!^)"));
+						 }else if(c.matches("^M.*")) {
+							 squareContent.put("M","" );
+						 }else if(c.matches("^T.*")) {
+							 squareContent.put("T",this.data.get(c).get("number"));
+							 System.out.println(this.data.get(c));
+						 }
+					 }
+				 }
 				 yvalue.put(j,squareContent);
 			
 			 }
 			 rMapData.put(i, yvalue);
 		 }
-		 for (String c:this.data.keySet()) {
-//			 Pattern elementPattern= Pattern.compile("^A*");
-			 System.out.println(c);
-			 if(c.matches("A.*")) {
-				 String x= this.data.get(c).get("x");
-				 String y= this.data.get(c).get("y");		 
-				 rMapData.get(x).get(y).put("A",this.data.get(c).get("name"));
-				System.out.println(this.data.get(c).get("x"));
-//				.put(this.data.get(c).get("name")
-			}else if(c.matches("^M.*")) {
-				System.out.println("mmmmmmm");
-			}else if(c.matches("^T.*")) {
-				System.out.println("tttttt");
-			}
-			 
-		 }
-		 
+//		
+	this.rMap = new RegionMap(rMapData,);	 
 	System.out.println(rMapData);	 
 }
 
