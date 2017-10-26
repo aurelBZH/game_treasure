@@ -6,11 +6,11 @@ import java.util.Map;
 
 public class RegionMap{
 	private HashMap<Integer,HashMap<Integer,HashMap<String,String>>> rMap;
-	public RegionMap(HashMap<Integer,HashMap<Integer,HashMap<String,String>>> rMapData,Map<String, adventurer> adventurerList){
+	public RegionMap(HashMap<Integer,HashMap<Integer,HashMap<String,String>>> rMapData,Map<String, Adventurer> adventurerList){
 		this.rMap=rMapData;
 		this.adventurerList=adventurerList;	
 	}
-	private Map<String,adventurer> adventurerList;
+	private Map<String,Adventurer> adventurerList;
 	public void MakeAction() {
 		for (Integer key1 : this.rMap.keySet()) {
 		    Map<Integer,HashMap<String,String>> yMap = this.rMap.get(key1);
@@ -28,18 +28,34 @@ public class RegionMap{
 		    			String movement = this.adventurerList.get(xMap.get("A")).getMovement().remove(0);
 		    			if(movement.equals("A")) {
 		    			if(this.adventurerList.get(xMap.get("A")).getOrientation().equals("S")) {
-		    				
+		    				this.adventurerList.get(xMap.get("A")).setXvalue(this.adventurerList.get(xMap.get("A")).getXvalue()+1);
 		    			}else if(this.adventurerList.get(xMap.get("A")).getOrientation().equals("N")) {
-		    				
+		    				this.adventurerList.get(xMap.get("A")).setXvalue(this.adventurerList.get(xMap.get("A")).getXvalue()-1);
 		    			}else if(this.adventurerList.get(xMap.get("A")).getOrientation().equals("O")) {
-		    				
+		    				this.adventurerList.get(xMap.get("A")).setYvalue(this.adventurerList.get(xMap.get("A")).getYvalue()-1);
 		    			}else if(this.adventurerList.get(xMap.get("A")).getOrientation().equals("E")) {
-		    				
+		    				this.adventurerList.get(xMap.get("A")).setYvalue(this.adventurerList.get(xMap.get("A")).getYvalue()+1);
 		    			}
 		    			}else if(movement.equals("D")) {
-		    				
+		    				if(this.adventurerList.get(xMap.get("A")).getOrientation().equals("N")){
+		    					this.adventurerList.get(xMap.get("A")).setOrientation("E");
+		    				}else if(this.adventurerList.get(xMap.get("A")).getOrientation().equals("N")) {
+		    					this.adventurerList.get(xMap.get("A")).setOrientation("O");
+		    				}else if (this.adventurerList.get(xMap.get("A")).getOrientation().equals("O")) {
+		    					this.adventurerList.get(xMap.get("A")).setOrientation("N");
+		    				}else if(this.adventurerList.get(xMap.get("A")).getOrientation().equals("E")) {
+		    					this.adventurerList.get(xMap.get("A")).setOrientation("S");
+		    				}
 		    			}else if(movement.equals("G")) {
-		    				
+		    				if(this.adventurerList.get(xMap.get("A")).getOrientation().equals("N")){
+		    					this.adventurerList.get(xMap.get("A")).setOrientation("O");
+		    				}else if (this.adventurerList.get(xMap.get("A")).getOrientation().equals("S")) {
+		    					this.adventurerList.get(xMap.get("A")).setOrientation("E");
+		    				}else if (this.adventurerList.get(xMap.get("A")).getOrientation().equals("O")) {
+		    					this.adventurerList.get(xMap.get("A")).setOrientation("S");
+		    				}else if(this.adventurerList.get(xMap.get("A")).getOrientation().equals("E")) {
+		    					this.adventurerList.get(xMap.get("A")).setOrientation("N");
+		    				}
 		    			}
 		    				
 		    		}
@@ -58,10 +74,10 @@ public class RegionMap{
 	public void setrMap(HashMap<Integer,HashMap<Integer,HashMap<String,String>>> rMap) {
 		this.rMap = rMap;
 	}
-	public Map<String,adventurer> getAdventurerList() {
+	public Map<String,Adventurer> getAdventurerList() {
 		return adventurerList;
 	}
-	public void setAdventurerList(HashMap<String, adventurer> adventurerList) {
+	public void setAdventurerList(HashMap<String, Adventurer> adventurerList) {
 		this.adventurerList = adventurerList;
 	}
 	

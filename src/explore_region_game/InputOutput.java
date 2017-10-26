@@ -7,9 +7,19 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.regex.*;
 
+/**
+ * @author aurelien
+ *
+ */
 public class InputOutput{
-	public static HashMap lireFichier(String fichier, boolean flag) throws Exception {
-//		HashMap<String, String[]> hashmap = new HashMap<String, String[]>();
+	
+	
+	/**
+	 * @param fichier
+	 * @return HashMap<String, HashMap<String, String>> element
+	 * @throws Exception
+	 */
+	public static HashMap lireFichier(String fichier) throws Exception {
 		HashMap<String, HashMap<String, String>> element = new HashMap<String, HashMap<String, String>>();
 		Pattern elementPattern;
 		try {
@@ -22,11 +32,7 @@ public class InputOutput{
 			while ((ligne = br.readLine()) != null) {
 				String[] elementListLine = ligne.split("-");
 				String depart = elementListLine[0];
-//				System.out.println(depart);
 				elementPattern= Pattern.compile(depart);
-//				if(elementPattern.matcher("#")!=null) {
-////					System.out.println(depart);
-//				}
 				
 				if (depart.equals("C")) {
 					
@@ -53,7 +59,6 @@ public class InputOutput{
 					hm.put("movement", elementListLine[5]);
 					element.put(depart+cptA, hm);
 					System.out.println(hm);
-//					System.out.print(depart);
 					cptA++;
 					
 				}else if (elementListLine[0].equals("M")) {
@@ -76,10 +81,4 @@ public class InputOutput{
 	}
 	
 	
-	public static void printEntry() {
-		System.out.println("hello, welcome to the explore region game software");
-	}
-	public static void printChooseFile() {
-		System.out.println("choose your entry file");
-	};
 }
