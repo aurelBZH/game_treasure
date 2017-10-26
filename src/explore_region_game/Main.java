@@ -1,7 +1,9 @@
 package explore_region_game;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.regex.Pattern;
 
 //import joptsimple.OptionParser;
@@ -25,7 +27,7 @@ public class  Main {
 	
 public static void main(String[] args) {
 	Main main = new Main(args[0]);
-	main.createRegionMap();
+	main.centralGame();
 //	System.out.println(args[0]);
 
 //	 OptionParser parser = new OptionParser( "j::k" );
@@ -37,11 +39,16 @@ public static void main(String[] args) {
 
 
 }
-public  void createRegionMap() {
+
+public void centralGame() {
+	this.rMap = this.createRegionMap();
+	this.rMap.MakeAction();
+}
+public  RegionMap createRegionMap() {
 	this.data.get("C");
 		System.out.println(this.data.get("C").get("x"));
 		HashMap<Integer,HashMap<Integer,HashMap<String, String>>>rMapData=new HashMap<Integer,HashMap<Integer,HashMap<String, String>>>();
-		ArrayList<adventurer>adventurerList = new ArrayList<adventurer>();
+		HashMap<String,adventurer>adventurerList = new HashMap<String,adventurer>();
 		 for (int i=0 ; i<Integer.parseInt(this.data.get("C").get("x"))  ; i++) {
 			 HashMap<Integer,HashMap<String, String>>yvalue=new HashMap<Integer,HashMap<String, String>>();
 			 for(int j=0 ; j<Integer.parseInt(this.data.get("C").get("y"))  ; j++) {
@@ -56,8 +63,12 @@ public  void createRegionMap() {
 							 HashMap<String,Integer>position= new HashMap<String, Integer>();
 							 position.put("x", Integer.parseInt(this.data.get(c).get("x")));
 							 position.put("y", Integer.parseInt(this.data.get(c).get("y")));
-							 adventurer adventurerVal=new adventurer(this.data.get(c).get("name"),position, this.data.get(c).get("orientation"),this.data.get(c).get("movment").split("(?!^)"));
-							 adventurerList.add(adventurerVal);
+							 System.out.println(this.data.get(c).get("name"));
+							 System.out.println(this.data.get(c).get("orientation"));
+							 ArrayList<String> movement =new ArrayList<String>(Arrays.asList( this.data.get(c).get("movement").split("(?!^)")));
+							 System.out.println(position);
+							 adventurer adventurerVal=new adventurer(this.data.get(c).get("name"),position, this.data.get(c).get("orientation"), movement);
+							 adventurerList.put(this.data.get(c).get("name"),adventurerVal);
 						 }else if(c.matches("^M.*")) {
 							 squareContent.put("M","" );
 						 }else if(c.matches("^T.*")) {
@@ -72,8 +83,7 @@ public  void createRegionMap() {
 			 rMapData.put(i, yvalue);
 		 }
 //		
-	this.rMap = new RegionMap(rMapData,adventurerList);	 
-	System.out.println(rMapData);	 
+	return new RegionMap(rMapData,adventurerList);	 
 }
 
 }
